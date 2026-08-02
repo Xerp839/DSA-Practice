@@ -6,19 +6,21 @@ class Solution(object):
         """
         vowels = ['a', 'e', 'i', 'o', 'u']
         local_vowels = []
-
+        s = list(s)
         l = 0
         r = len(s) -1
         temp = 'a'
 
         while l < r:
-            if s[l].lower in vowels:
-                if s[r].lower in vowels:
-                    temp = s[l]
-                    s[l] = s[r]
-                    s[r] = temp
-                    l += 1
-                    r -= 1
+
+            if s[l].lower() not in vowels:
+                l += 1
+
+            elif s[r].lower() not in vowels:
                 r -= 1
-            l += 1
-        return s
+
+            else:
+                s[l], s[r] = s[r] , s[l]
+                l += 1
+                r -= 1
+        return "".join(s)
