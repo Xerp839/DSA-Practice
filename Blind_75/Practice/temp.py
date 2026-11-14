@@ -1,26 +1,21 @@
-#Pratice revision here
 class Solution(object):
-    def mergeAlternately(self, word1, word2):
+    def kidsWithCandies(self, candies, extraCandies):
         """
-        :type word1: str
-        :type word2: str
-        :rtype: str
+        :type candies: List[int]
+        :type extraCandies: int
+        :rtype: List[bool]
         """
+
         result = []
-        l ,r = 0
+        max = candies[0]
 
-        while l < len(word1) and r < len(word2):
-            result.append(word1[l])
-            result.append(word2[r])
-            l += 1
-            r += 1
+        for i in range(len(candies)):
+            if candies[i] > max:
+                max = candies[i]
 
-        while l < len (word1):
-            result.append(word1[l])
-            l += 1
-
-        while r < len(word2):
-            result.append(word2[r])
-            r += 1
-
-        return "".join(result)
+        for i in range(len(candies)):
+            if candies[i] + extraCandies > max:
+                result.append(True)
+            else:
+                result.append(False)
+        return result
