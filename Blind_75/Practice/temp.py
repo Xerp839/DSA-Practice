@@ -1,21 +1,19 @@
 class Solution(object):
-    def kidsWithCandies(self, candies, extraCandies):
+    def canPlaceFlowers(self, flowerbed, n):
         """
-        :type candies: List[int]
-        :type extraCandies: int
-        :rtype: List[bool]
+        :type flowerbed: List[int]
+        :type n: int
+        :rtype: bool
         """
+        for i in range(len(flowerbed)):
+            if flowerbed[i] == 1:
+                continue
+            if flowerbed[i-1] is None and flowerbed[i + 1]:
+                n -= 1
+            elif flowerbed[i-1] == 0 and flowerbed[i + 1] == 0:
+                n -= 1
+            elif flowerbed[i- 1] == 0 and flowerbed[i+1] is None:
+                n -= 1
+        return True if n <= 0 else False
 
-        result = []
-        max = candies[0]
-
-        for i in range(len(candies)):
-            if candies[i] > max:
-                max = candies[i]
-
-        for i in range(len(candies)):
-            if candies[i] + extraCandies > max:
-                result.append(True)
-            else:
-                result.append(False)
-        return result
+    canPlaceFlowers
